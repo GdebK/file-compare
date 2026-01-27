@@ -6,6 +6,10 @@ import xml from 'highlight.js/lib/languages/xml';
 import yaml from 'highlight.js/lib/languages/yaml';
 import python from 'highlight.js/lib/languages/python';
 import css from 'highlight.js/lib/languages/css';
+import sql from 'highlight.js/lib/languages/sql';
+import markdown from 'highlight.js/lib/languages/markdown';
+import php from 'highlight.js/lib/languages/php';
+import java from 'highlight.js/lib/languages/java';
 
 // Register only needed languages to keep bundle light
 hljs.registerLanguage('javascript', javascript);
@@ -15,6 +19,10 @@ hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('yaml', yaml);
 hljs.registerLanguage('python', python);
 hljs.registerLanguage('css', css);
+hljs.registerLanguage('sql', sql);
+hljs.registerLanguage('markdown', markdown);
+hljs.registerLanguage('php', php);
+hljs.registerLanguage('java', java);
 
 export const mapHljsToMonaco = (hljsLang: string): string => {
   const map: Record<string, string> = {
@@ -25,7 +33,10 @@ export const mapHljsToMonaco = (hljsLang: string): string => {
     'html': 'html', 'xml': 'xml',
     'css': 'css',
     'yaml': 'yaml', 'yml': 'yaml',
-    'json': 'json'
+    'json': 'json',
+    'sql': 'sql',
+    'markdown': 'markdown', 'md': 'markdown',
+    'php': 'php'
   };
   return map[hljsLang] || 'plaintext';
 };
