@@ -1,7 +1,7 @@
 import React from 'react';
 import { Files } from 'lucide-react';
 import clsx from 'clsx';
-import compareImg from '/File.png'
+import compareImg from '/CompareIcon.png'
 
 interface SidebarProps {
   activeTab: string;
