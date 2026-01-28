@@ -11,7 +11,6 @@ import markdown from 'highlight.js/lib/languages/markdown';
 import php from 'highlight.js/lib/languages/php';
 import java from 'highlight.js/lib/languages/java';
 
-// Register only needed languages to keep bundle light
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('json', json);
