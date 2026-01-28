@@ -1,26 +1,35 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Tab.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File-compare</title>
-    <meta
-      name="description"
-      content="Free online file compare tool to compare text files instantly. Secure, fast, and browser-based file comparison. No upload required."
-    />
-    <meta
-      name="keywords"
-      content="file compare, compare files online, text file compare, diff tool, online diff checker"
-    />
 
-    <meta name="robots" content="index, follow" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="canonical" href="https://gdebk.github.io/file-compare/" />
-  </head>
+  <title>File Compare</title>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <meta name="description"
+    content="Free online file compare tool to compare text files instantly. Secure, fast, and browser-based. No upload required." />
+
+  <meta name="keywords"
+    content="file compare, compare files online, text file compare, diff tool, online diff checker" />
+
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gdebk.github.io/file-compare/" />
+
+  <meta property="og:title" content="File Compare Online" />
+  <meta property="og:description" content="Compare two files instantly in your browser" />
+  <meta property="og:url" content="https://gdebk.github.io/file-compare/" />
+  <meta property="og:type" content="website" />
+
+  <!-- IMPORTANT: base-path favicon -->
+  <link rel="icon" href="/file-compare/Tab.png" />
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- REQUIRED: Vite entry -->
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
