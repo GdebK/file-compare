@@ -1,7 +1,7 @@
 import React from 'react';
 import { Files } from 'lucide-react';
 import clsx from 'clsx';
-import compareImg from '/CompareIcon.png'
+import userImg from '/User.png'
 
 interface SidebarProps {
   activeTab: string;
@@ -16,9 +16,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div className="w-12 bg-vs-sidebar flex flex-col items-center py-2 h-full border-r border-vs-bg select-none">
       <div className="mb-4 text-blue-500">
-        <img src={compareImg} alt="" />
+        <img src={userImg} alt="" />
       </div>
-
       {icons.map((item) => (
         <div
           key={item.id}
@@ -33,7 +32,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           <item.icon className="w-6 h-6" />
         </div>
       ))}
-
     </div>
   );
 };
