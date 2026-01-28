@@ -19,23 +19,31 @@ function App() {
   const detectionTimeoutRef = useRef<number | null>(null);
 
   const handleContentChange = useCallback((newOriginal: string, newModified: string) => {
-    if (newOriginal !== originalCode) setOriginalCode(newOriginal);
-    if (newModified !== modifiedCode) setModifiedCode(newModified);
+    setOriginalCode(newOriginal);
+    setModifiedCode(newModified);
 
     if (detectionTimeoutRef.current) clearTimeout(detectionTimeoutRef.current);
 
     detectionTimeoutRef.current = window.setTimeout(() => {
       const codeToCheck = newModified || newOriginal;
-      if (!codeToCheck.trim()) return;
+      if (!codeToCheck.trim()) {
+        setLanguage('plaintext');
+        return;
+      }
 
       const detected = detectLanguage(codeToCheck);
-      if (detected !== language && detected !== 'plaintext') {
+      if (detected !== language) {
         setLanguage(detected);
         setStatusMsg(`Detected: ${detected.toUpperCase()}`);
       }
     }, 1200);
-  }, [language, originalCode, modifiedCode]);
-
+  }, [language]);
+  const handleClear = () => {
+    setOriginalCode('');
+    setModifiedCode('');
+    setLanguage('plaintext');
+    setStatusMsg('Cleared');
+  };
   const handleFormat = async () => {
     if (isFormatting) return;
     setIsFormatting(true);
@@ -57,12 +65,6 @@ function App() {
     }
   };
 
-  const handleClear = () => {
-    setOriginalCode('');
-    setModifiedCode('');
-    setLanguage('plaintext');
-    setStatusMsg('Cleared');
-  };
 
   return (
     <div className="flex h-screen w-full bg-vs-bg text-vs-text overflow-hidden font-sans">

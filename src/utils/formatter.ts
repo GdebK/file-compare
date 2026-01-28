@@ -54,7 +54,6 @@ export const formatCode = async (code: string, language: string): Promise<string
     return formatted;
   } catch (e) {
     console.error("Formatting failed", e);
-    // If formatting fails, return original code instead of throwing
     return code;
   }
 };
