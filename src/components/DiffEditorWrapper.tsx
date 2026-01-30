@@ -22,16 +22,39 @@ const DiffEditorWrapper = ({
   const diffEditorRef = useRef<editor.IStandaloneDiffEditor | null>(null);
   const [isOriginalEmpty, setIsOriginalEmpty] = useState(!original);
   const [isModifiedEmpty, setIsModifiedEmpty] = useState(!modified);
+
   const handleEditorDidMount = (editor: editor.IStandaloneDiffEditor) => {
     diffEditorRef.current = editor;
+    const originalEditor = editor.getOriginalEditor();
+    const modifiedEditor = editor.getModifiedEditor();
 
-    // Handle cursor changes for the modified editor
-    editor.getModifiedEditor().onDidChangeCursorPosition((e) => {
+    const editorOptions = {
+      folding: true,
+      foldingStrategy: 'indentation' as const,
+      showFoldingControls: 'always' as const,
+      foldingHighlight: true,
+      foldingImportsByDefault: false,
+      glyphMargin: true,
+      lineNumbersMinChars: 3,
+      lineDecorationsWidth: 10,
+      lineNumbers: 'on' as const,
+    };
+
+    console.log('🔧 Applying folding options to editors:', editorOptions);
+    originalEditor.updateOptions(editorOptions);
+    modifiedEditor.updateOptions(editorOptions);
+
+    setTimeout(() => {
+      const origOptions = originalEditor.getOptions();
+      const modOptions = modifiedEditor.getOptions();
+      console.log('✅ Original editor folding enabled:', origOptions.get(39));
+      console.log('✅ Modified editor folding enabled:', modOptions.get(39));
+    }, 1000);
+
+    modifiedEditor.onDidChangeCursorPosition((e) => {
       onCursorChange(e.position.lineNumber, e.position.column);
     });
 
-    const originalEditor = editor.getOriginalEditor();
-    const modifiedEditor = editor.getModifiedEditor();
     const originalModel = originalEditor.getModel();
     const modifiedModel = modifiedEditor.getModel();
 
@@ -94,10 +117,16 @@ const DiffEditorWrapper = ({
           padding: { top: 10 },
           automaticLayout: true,
           renderOverviewRuler: false,
+          folding: true,
+          foldingStrategy: 'auto',
+          showFoldingControls: 'always',
+          foldingHighlight: true,
+          foldingImportsByDefault: false,
+          glyphMargin: true,
+          lineNumbersMinChars: 3,
         }}
       />
     </div>
   );
 };
-
 export default DiffEditorWrapper;
